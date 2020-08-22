@@ -23,3 +23,11 @@ usage: git add [<options>] [--] <pathspec>...
                           read pathspec from file
     --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
 
+
+#How to remove delete multiple files
+
+git add -u
+(update the local repository whether u delete or add the new files)
+
+git commit -m "deleted manually"
+git push

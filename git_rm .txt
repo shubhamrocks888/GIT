@@ -1,0 +1,32 @@
+git rm -A
+error: unknown switch `A'
+usage: git rm [<options>] [--] <file>...
+
+    -n, --dry-run         dry run
+    -q, --quiet           do not list removed files
+    --cached              only remove from the index
+    -f, --force           override the up-to-date check
+    -r                    allow recursive removal
+    --ignore-unmatch      exit with a zero status even if nothing matched
+    --pathspec-from-file <file>
+                          read pathspec from file
+    --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
+
+
+#How to remove delete multiple files
+git rm <file1> <file2> <file3>…
+       commit your chnages
+
+git commit -m "removing files"
+       push your chnages to github
+
+git push
+
+
+#How to remove delete multiple files
+
+git add -u
+(update the local repository whether u delete or add the new files)
+
+git commit -m "deleted manually"
+git push
