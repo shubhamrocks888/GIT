@@ -1,0 +1,40 @@
+#If your company has a remote repository and you want to clone that repository and wanna start developing it.
+
+1.  	git clone <remote_repository_url> <where_to_clone>
+
+    	Example:
+    
+    	Select a folder in which you want to add remote repository
+
+    	$ cd testdir
+    	$ git clone https://github.com/shubhamrocks888/python_practise.git
+		'OR'
+	$ cd (directed to home directory )
+	$ git clone https://github.com/shubhamrocks888/python_practise.git /c/Users/dell/desktop/testdir	
+
+    	Cloning into 'python_practise'...
+	remote: Enumerating objects: 1063, done.
+	remote: Counting objects: 100% (1063/1063), done.
+	remote: Compressing objects: 100% (945/945), done.
+	remote: Total 1063 (delta 105), reused 1063 (delta 105), pack-reused 0
+	Receiving objects: 100% (1063/1063), 3.37 MiB | 440.00 KiB/s, done.
+	Resolving deltas: 100% (105/105), done.
+	Updating files: 100% (1018/1018), done.
+
+	$ git status
+	fatal: not a git repository (or any of the parent directories): .git
+
+	$ ls
+	python_practise/
+
+	$ cd python_practise/
+	
+	$ git status
+	On branch master
+	branch is up to date with 'origin/master'.
+
+	nothing to commit, working tree clean
+
+	
+
+ 

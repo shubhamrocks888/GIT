@@ -1,0 +1,73 @@
+		##Tracking down a code from your computer or from local repository. 
+
+1. First select a folder
+
+2. $ cd <folder_name>  ---> get inside the folder
+
+3. $ git init         ---->Initialize a empty git repository
+
+4. $ ls -la	      --->list out the hidden files and folders
+
+-> drwxr-xr-x 1 dell 197121 0 Sep  4 19:30 .git/
+   This .git directory contains everythings that related to our directory.
+
+5. To Stop tracking down our project:
+   $ rm -rf .git
+
+6. git status
+
+	$ git status
+	On branch master
+
+	No commits yet
+
+	Untracked files:
+  	(use "git add <file>..." to include in what will be committed)
+        	
+        	abc.py
+        	def.py
+
+	nothing added to commit but untracked files present (use "git add" to track)
+
+7. if we dont want to track abc.py file:
+
+   $ touch .gitignore  ---->add a .gitignore text file in this repository
+	
+   open this file and write like:
+
+   abc.py
+
+   Then,git status does not track a abc.py file
+
+   NOTE:You can also use a wildcard operator like *.py which means no file that ends with.py extension got tracked.
+
+8. Basically there are 3 stages:
+	
+	Working Directory ---> Staging area --->.git directory (Repository)
+	
+	git status  ---> shows files in working directory
+	git add     --> files from working directory to staging area
+	git commit  --> files from staging area to .git directory
+
+9. Remove files from staging area
+
+   $ git reset   	    --->remove all files from staging area
+   $ git reset <file_name>  --->remove particular file from staging area
+
+10. git log  ---> gives information about commit
+
+    $ git log
+    commit d2e9e880a12b1b825d24bd5c6f0415ad39567481 (HEAD -> master)
+    Author: Shubham Jain <shubhamrocks888@gmail.com>
+    Date:   Fri Sep 4 22:55:31 2020 +0530
+
+    first commit
+
+
+
+	
+
+
+
+
+   

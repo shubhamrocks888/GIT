@@ -1,0 +1,14 @@
+1. 	git remote -v   --->It lists the information to the repository here
+
+	Example:
+	$ git remote -v
+	origin  https://github.com/shubhamrocks888/python_practise.git (fetch)
+	origin  https://github.com/shubhamrocks888/python_practise.git (push)
+
+2.	git branch -a  --->It will list all our branches in repository not only locally but remotely also.
+	
+	Example:
+	$ git branch -a
+	* master
+  	remotes/origin/HEAD -> origin/master
+  	remotes/origin/master

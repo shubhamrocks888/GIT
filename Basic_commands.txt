@@ -1,0 +1,50 @@
+1.		"CHECK VERSION"
+
+$ git --version
+git version 2.26.2.windows.1
+
+2.		"SET CONFIG VALUES"
+
+->git config --global user.name "Shubham Jain"
+
+->git config --global user.email "shubhamrocks888@gmail.com"
+
+->git config --list
+
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+credential.helper=manager
+user.email=shubhamrocks888@gmail.com
+user.name=Shubham Jain
+
+3.		"NEED HELP?"
+
+-> git help <command>
+	'OR'
+->git <command> --help 
+
+Example: 'git help add' or 'git add --help'  (page is opened in the browser for that command)
+
+4. git diff   ---> Shows the changes that have been made to code
+
+Example: $ git diff
+
+5. Remember Always!!!! i.e,, Always pull before push
+
+$ git pull origin master
+$ git push origin master
+
+  origin  --> name of remote repository
+  master  --> master is the branch that we pushed to
+
+
+
+         
