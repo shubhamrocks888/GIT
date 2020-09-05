@@ -1,0 +1,185 @@
+ 	"CREATE A BRANCH FOR DESIRED FEATURE"
+
+##	 git branch  --> list of all the branches in local repository
+
+	$ git branch
+	* master
+
+	NOTE: '*' shows the branch at which we are currently in
+
+##	git branch -a --> list of all the branches in local as well as remote repository
+
+	$ git branch -a
+	* master
+  	remotes/origin/HEAD -> origin/master
+  	remotes/origin/master
+
+	NOTE: ../HEAD -> shows the branch at which we are currently in remote repository
+
+
+##LITTILE DEMO PROJECT:
+
+1.	git status
+
+	$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   demoo.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+2.	So,modification is done in a demoo.py file.
+	Let's create a branch for this:
+	
+	$ git branch calc-divide
+
+3.	Lets go out to this calc-divide branch by:
+
+	$ git checkout calc-divide
+	Switched to branch 'calc-divide'
+	M       demoo.py
+
+4. 	Check the branch at which we are currently in:
+
+	$ git branch
+	* calc-divide
+  	master
+
+5.	Now,add these modifications at this branch;
+	
+	git add -A
+	git commmit -m "divide func"
+
+	Now,we have successfully committed our changes.but this has no effect on local master branch and
+	remote repository.
+
+6.	AFTER COMMIT PUSH BRANCH TO REMOTE: git push -u origin calc-divide
+
+	NOTE: We are pushing first time this branch,thatswhy we have used u after push.
+	      After that we can push like normally -> git push
+	
+	$ git push -u origin calc-divide
+	Enumerating objects: 5, done.
+	Counting objects: 100% (5/5), done.
+	Delta compression using up to 4 threads
+	Compressing objects: 100% (3/3), done.
+	Writing objects: 100% (3/3), 313 bytes | 104.00 KiB/s, done.
+	Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+	remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+	remote:
+	remote: Create a pull request for 'calc-divide' on GitHub by visiting:
+	remote:      https://github.com/shubhamrocks888/python_practise/pull/new/calc-divide
+	remote:
+	To https://github.com/shubhamrocks888/python_practise.git
+	 * [new branch]      calc-divide -> calc-divide
+	Branch 'calc-divide' set up to track remote branch 'calc-divide' from 'origin'.
+
+7.  	Now,check the branches:
+
+	$ git branch -a
+	* calc-divide
+  	master
+  	remotes/origin/HEAD -> origin/master
+ 	remotes/origin/calc-divide
+  	remotes/origin/master
+
+	After being tested the calc-divide branch at repository.We can merge the branch 
+
+8.	MERGE A CALC-DIVIDE BRANCH WITH MASTER:
+
+	$ git checkout master
+	Switched to branch 'master'
+	branch is up to date with 'origin/master'.
+
+	Before we commit anything to master,we want to pull all the changes down in case
+	any changes were made.
+
+	$ git pull origin master
+	From https://github.com/shubhamrocks888/python_practise
+ 	* branch            master     -> FETCH_HEAD
+	Already up to date.
+
+9.     git branch --merged ---> tell us about the branches that we are merged
+
+	$  git branch --merged
+	* master
+
+	calc-divide doesnot show here,it means it has not been merged yet.
+
+10.	Merge calc-divide branch with master:
+
+	$ git merge calc-divide
+	Updating 0783c7b..ecb9b86
+	Fast-forward
+ 	demoo.py | 23 ++++-------------------
+ 	1 file changed, 4 insertions(+), 19 deletions(-)
+
+11.	Check the branch that is merged with master:
+
+	$ git branch --merged
+  	calc-divide
+	* master
+
+	Here,calc-divide has showed up.So,finally it has been merged with master.
+
+12.	Push the master branch to remote repository:
+
+	$ git push origin master
+	Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+	To https://github.com/shubhamrocks888/python_practise.git
+   	0783c7b..ecb9b86  master -> master
+
+13. 	Now,we are done with calc-divide branch:
+
+	$ git branch -a
+  	calc-divide
+	* master
+  	remotes/origin/HEAD -> origin/master
+  	remotes/origin/calc-divide
+  	remotes/origin/master
+	
+	DELETE A BRANCH AT LOCAL REPOSITORY : git branch -d <branch_name> 
+
+	$ git branch -d calc-divide
+	Deleted branch calc-divide (was ecb9b86).
+
+	$ git branch -a
+	* master
+  	remotes/origin/HEAD -> origin/master
+  	remotes/origin/calc-divide
+  	remotes/origin/master
+
+	Since,calc-divide has been deleted from local repository but not yet from
+	remote repository.
+
+	DELETE A BRANCH AT REMOTE REPOSITORY : git push origin --delete <branch_name>
+
+	$ git push origin --delete calc-divide
+	To https://github.com/shubhamrocks888/python_practise.git
+ 	- [deleted]         calc-divide	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  
+ 
+
+
+	
