@@ -163,6 +163,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
  	- [deleted]         calc-divide	
 
 
+#NOTE:
+$ git branch -d multiply-feature
+error: The branch 'multiply-feature' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D multiply-feature'.
+
+$ git branch -D multiply-feature
+Deleted branch multiply-feature (was e0d8f9d).
 
 
 

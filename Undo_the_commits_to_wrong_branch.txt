@@ -1,0 +1,105 @@
+	"COMMIT TO MASTER BRANCH INSTEAD OF OTHER BRANCH"
+
+--> git cherry-pick <commit_hash>
+
+
+# Example:
+
+$ git branch
+  backup
+* master
+  subtract-feature
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        fourth_file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> master, subtract-feature)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+$ git add fourth_file.txt
+$ git commit -m "subtract"
+[master ee5e547] subtract
+ 1 file changed, 1 insertion(+)
+ create mode 100644 fourth_file.txt
+
+$ git log
+commit ee5e5476ff1843916f206095216289099b5e3a68 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 22:51:49 2020 +0530
+
+    subtract
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (subtract-feature)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+$ git checkout subtract-feature
+Switched to branch 'subtract-feature'
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> subtract-feature)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+$ git cherry-pick ee5e5476ff
+[subtract-feature d41d005] subtract
+ Date: Mon Sep 7 22:51:49 2020 +0530
+ 1 file changed, 1 insertion(+)
+ create mode 100644 fourth_file.txt
+
+
+$ git log
+commit d41d005251f62804174fe8bbe108beb6b24e9d96 (HEAD -> subtract-feature)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 22:51:49 2020 +0530
+
+    subtract
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+#Note: The original commit is still there in master branch.You can remove it by one of three
+	git reset methods.

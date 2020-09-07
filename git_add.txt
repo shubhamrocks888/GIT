@@ -1,4 +1,4 @@
-#git add 
+#	git add  ----> ADD FILES TO THE STAGING AREA 
 git add -a
 error: unknown switch `a'
 usage: git add [<options>] [--] <pathspec>...
@@ -23,6 +23,7 @@ usage: git add [<options>] [--] <pathspec>...
                           read pathspec from file
     --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
 
+#
 
 #How to remove delete multiple files
 

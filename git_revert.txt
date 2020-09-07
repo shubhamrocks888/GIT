@@ -1,0 +1,78 @@
+The git revert command is a forward-moving undo operation that offers a safe method of undoing changes. 
+Instead of deleting or orphaning commits in the commit history, a revert will create a new commit 
+that inverses the changes specified. Git revert is a safer alternative to git reset in regards to losing work ...
+
+#Bassically it is used when u have committed wrong commit ans someone already pull those changes.
+ In that case, we can use git revert by which we can come to last commit.
+
+#Example:
+
+$ git checkout master
+Switched to branch 'master'
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+
+$ ls
+first_file.txt  fourth_file.txt  second_file.txt
+
+
+commit ee5e5476ff1843916f206095216289099b5e3a68 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 22:51:49 2020 +0530
+
+    subtract
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+#NOTE: In this subtract commit,we added a fourth_file
+
+$ git revert ee5e5476f
+Removing fourth_file.txt
+[master 28e1067] Revert "subtract"
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 fourth_file.txt
+
+
+$ ls
+first_file.txt  second_file.txt
+
+# above command shows that fourth_file did not exist
+
+$ git log
+commit 28e1067fe34ab11da33fbfe2afbba748ce8c5d9d (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 23:04:07 2020 +0530
+
+    Revert "subtract"
+
+    This reverts commit ee5e5476ff1843916f206095216289099b5e3a68.
+
+commit ee5e5476ff1843916f206095216289099b5e3a68
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 22:51:49 2020 +0530
+
+    subtract
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit

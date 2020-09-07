@@ -1,0 +1,11 @@
+		"COMMIT CHANGES"
+$ git diff
+$ git status
+$ git add -a
+$ git commit -m "function added"
+
+
+		"THEN PUSH:"
+$ git pull origin master
+$ git push origin master
+

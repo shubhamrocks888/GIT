@@ -1,0 +1,312 @@
+	"THERE ARE 3 TYPES OF GIT COMMIT RESET"
+
+1. git reset --soft <commit_hash>
+
+2. git reset --mixed <commit_hash>
+
+	'or'
+
+   git reset <commit_hash>
+
+#NOTE: mixed reset is default reset
+
+3. git reset --hard <commit_hash>
+
+#NOTE: <commit_hash> --> copy 5 to 6 hash digits.
+
+
+#LOCAL REPOSITORY:
+
+$ ls
+first_file.txt  second_file.txt	 third_file.txt
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+
+$ git log
+commit 959b033225a71bbeba6361c75b4daa162acfbe78 (HEAD -> master, origin/master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:50:20 2020 +0530
+
+    third commit
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774
+Author: Shubham Jain <shubh
+amrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+
+---> In third commit,we modified second_file and add new third_file. 
+
+
+	"Let's check the git reset one by one"
+
+1. git reset --soft <commit_hash>:
+->Copy the second commit hash digits
+
+$ git reset --soft 8b9db355
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   second_file.txt
+        new file:   third_file.txt
+
+--> All these files has added to the staging area  --> it means "git add -A" already did.
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+
+2. git reset --mixed <commit_hash>:
+
+$ git reset 8b9db355
+Unstaged changes after reset:
+M       second_file.txt
+
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   second_file.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        third_file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+--> All these files has not added to staging area .It means one step before "git add -A".  
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+3. git reset --hard <commit_hash>:
+
+$ git reset --hard 8b9db355
+HEAD is now at 8b9db35 second commit
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        third_file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+--> All the modified work in second_file has gone.So,be careful with that.
+
+ 		"Want to remove untracked files "
+
+git clean -df  ----> 'd' for directory and 'f' for files
+
+Example:
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        third_file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+$ git clean -df
+Removing third_file.txt
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+
+ 
+
+			"git ref log"
+
+->After git reset hard u have lost ur changes,but in case u need that changes.
+  You have to use git ref log.
+
+$ git reflog
+8b9db35 (HEAD -> master) HEAD@{0}: reset: moving to 8b9db355
+8b9db35 (HEAD -> master) HEAD@{1}: reset: moving to 8b9db355
+8b9db35 (HEAD -> master) HEAD@{2}: reset: moving to 8b9db355
+959b033 (origin/master) HEAD@{3}: commit: third commit
+8b9db35 (HEAD -> master) HEAD@{4}: pull: Fast-forward
+41d8099 HEAD@{5}: reset: moving to 41d80993
+41d8099 HEAD@{6}: reset: moving to 41d80993
+41d8099 HEAD@{7}: reset: moving to 41d80993
+8b9db35 (HEAD -> master) HEAD@{8}: pull: Fast-forward
+41d8099 HEAD@{9}: reset: moving to 41d80993
+8b9db35 (HEAD -> master) HEAD@{10}: pull: Fast-forward
+41d8099 HEAD@{11}: reset: moving to 41d80993
+8b9db35 (HEAD -> master) HEAD@{12}: commit: second commit
+41d8099 HEAD@{13}: commit (initial): first commit
+
+So,to get the changes before -->copy the hash of fourth commit from top.
+
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+
+$ git checkout 959b033
+Note: switching to '959b033'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 959b033 third commit
+
+
+dell@DESKTOP-GINK5BC MINGW64 ~/desktop/test ((959b033...))
+$ git log
+commit 959b033225a71bbeba6361c75b4daa162acfbe78 (HEAD, origin/master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:50:20 2020 +0530
+
+    third commit
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+$ git branch
+* (HEAD detached at 959b033)
+  master
+
+--> Now, we are at detached head state.it means we are not in a  branch.
+
+So, lets backup this state by creating new branch:
+
+$ git branch backup
+
+$ git checkout master
+Previous HEAD position was 959b033 third commit
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+
+$ git log
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (HEAD -> master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+
+$ git checkout backup
+Switched to branch 'backup'
+
+$ git log
+commit 959b033225a71bbeba6361c75b4daa162acfbe78 (HEAD -> backup, origin/master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:50:20 2020 +0530
+
+    third commit
+
+commit 8b9db355efdc76668b65b78ede4188ecb52c9774 (master)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:28:25 2020 +0530
+
+    second commit
+
+commit 41d80993eac6d91e5ecfbb95319d72a8332b3586
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Mon Sep 7 16:25:55 2020 +0530
+
+    first commit
+ 
+
+
+   	  
