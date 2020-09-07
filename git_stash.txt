@@ -1,0 +1,191 @@
+Whenever you have some changes that you are not ready to commit and maybe you need to switch
+branches or even you just want to revert back temporarily to where it was that you started.
+
+->Stash is carry from branch to branch 
+
+$ git branch
+  backup
+* master
+
+$ git branch add
+
+$ git checkout add
+Switched to branch 'add'
+
+$ git diff
+diff --git a/calc.py b/calc.py
+index e69de29..f083797 100644
+--- a/calc.py
++++ b/calc.py
+@@ -0,0 +1,2 @@
++def add(a,b):
++    return a+b
+
+$ git status
+On branch add
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   calc.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+#NOTE:The add function is added in calc.py file
+
+$ git stash save "worked on add function"
+Saved working directory and index state On add: worked on add function
+
+$ git diff
+
+$ git status
+On branch add
+nothing to commit, working tree clean
+
+#NOTE: The diff and status does not show any changes bcoz of stash.
+
+-->So, there are two ways to apply stash:
+
+"First way":
+
+$ git stash apply stash@{0}
+On branch add
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   calc.py
+
+$ git stash list
+stash@{0}: On add: worked on add function
+  
+#NOTE:Here,we cannot get rid of stash after apply,stash is still there in list.
+
+
+"Second way":
+$ git stash list
+stash@{0}: On add: worked on add function
+
+$ git stash pop
+On branch add
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   calc.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (cb1d25ad5de6367ea578e04f8298
+
+#NOTE: It will grab the first stash in the stash list
+
+$ git stash list
+
+#NOTE: The above command shows nothing
+
+$ git diff
+diff --git a/calc.py b/calc.py
+index e69de29..f083797 100644
+--- a/calc.py
++++ b/calc.py
+@@ -0,0 +1,2 @@
++def add(a,b):
++    return a+b
+
+
+#Example:
+
+$ git diff
+diff --git a/calc.py b/calc.py
+index e69de29..1ae1da9 100644
+--- a/calc.py
++++ b/calc.py
+@@ -0,0 +1,11 @@
++def add(a,b):
++    return a+b
++
++def subtract(a,b):
++    return a-b
++
++def multiply(a,b):
++    return a*b
++
++def divide(a,b):
++    return a/b
+
+#NOTE: Add subtract,multiply and divide function in calc file
+
+$ git stash save "calc functions"
+Saved working directory and index state On add: calc functions
+
+#NOTE: After above command ,calc file will become empty. 
+
+$ git stash list
+stash@{0}: On add: calc functions
+
+$ git diff
+diff --git a/calc.py b/calc.py
+index e69de29..3ff7f48 100644
+--- a/calc.py
++++ b/calc.py
+@@ -0,0 +1,2 @@
++def square(x):
++    return x*x
+
+#NOTE: we have add a square function in calc file
+
+$ git stash save "Added square function"
+Saved working directory and index state On add: Added square function
+
+$ git stash list
+stash@{0}: On add: Added square function
+stash@{1}: On add: calc functions
+
+#NOTE: the most recent stash has added to the top.
+
+$ git stash pop
+On branch add
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   calc.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (14d2fdf51da5d9d484464eb39cd99ee1e0b5eb90)
+
+#NOTE: the above function will pop up the latest stash,i.e square function
+
+$ git diff
+diff --git a/calc.py b/calc.py
+index e69de29..3ff7f48 100644
+--- a/calc.py
++++ b/calc.py
+@@ -0,0 +1,2 @@
++def square(x):
++    return x*x
+
+$ git stash list
+stash@{0}: On add: calc functions
+
+#NOTE: Now,only the square function is showing in calc file
+
+#NOTE: Now,adding sqaure fuunction to stash again
+
+$ git stash save "Added square function"
+Saved working directory and index state On add: Added square function
+
+$ git stash list
+stash@{0}: On add: Added square function
+stash@{1}: On add: calc functions
+
+#NOTE: if we want to drop stash then,
+
+$ git stash drop stash@{0}
+Dropped stash@{0} (a272026db0c80b5f175ec90e1ccc2d2646baab36)
+
+$ git stash list
+stash@{0}: On add: calc functions
+
+##NOTE: git stash clear   ---> drop all the stashes
+
+
+
+
+  
