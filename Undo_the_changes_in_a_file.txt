@@ -1,0 +1,50 @@
+1.		"Undo the changes in a file"
+
+Example: demmo.py file in local repository
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+->Now we have made some changes in demoo.py file
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   demoo.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git diff
+diff --git a/demoo.py b/demoo.py
+index dff6816..7174e54 100644
+--- a/demoo.py
++++ b/demoo.py
+@@ -4,3 +4,6 @@ def divide(x,y):
+
+ def multiply(x,y):
+     return x*y
++
++
++asddknjnsddnkdnknksnknaksks k
+
+->Now, undo the changes that have made by : git checkout <modified_file_name>
+
+$ git checkout demoo.py
+Updated 1 path from the index
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+ 
+
+

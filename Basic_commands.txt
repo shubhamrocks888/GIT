@@ -25,6 +25,7 @@ credential.helper=manager
 user.email=shubhamrocks888@gmail.com
 user.name=Shubham Jain
 
+
 3.		"NEED HELP?"
 
 -> git help <command>
@@ -33,17 +34,46 @@ user.name=Shubham Jain
 
 Example: 'git help add' or 'git add --help'  (page is opened in the browser for that command)
 
-4. git diff   ---> Shows the changes that have been made to code
+
+4. 		"git diff   ---> Shows the changes that have been made to code"
 
 Example: $ git diff
 
-5. Remember Always!!!! i.e,, Always pull before push
+
+5. 		"Remember Always!!!! i.e,, Always pull before push"
 
 $ git pull origin master
 $ git push origin master
 
   origin  --> name of remote repository
   master  --> master is the branch that we pushed to
+
+
+6. 		"git log"  --> It tells you about all the commits
+
+
+$ git log
+commit 9696cb3b09a645ae1a394397ddcedfbb4f1425be (HEAD -> master, origin/master, origin/HEAD)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Sat Sep 5 19:05:19 2020 +0530
+
+    multiply
+
+
+7.		"git log --stat" --> It tells you about all the commits with also the file changes
+
+$ git log --stat
+commit 9696cb3b09a645ae1a394397ddcedfbb4f1425be (HEAD -> master, origin/master, origin/HEAD)
+Author: Shubham Jain <shubhamrocks888@gmail.com>
+Date:   Sat Sep 5 19:05:19 2020 +0530
+
+    multiply
+
+ demoo.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+
+		
 
 
 
