@@ -77,3 +77,6 @@ Author: Shubham Jain <shubhamrocks888@gmail.com>
 Date:   Mon Sep 7 16:25:55 2020 +0530
 
     first commit
+
+#NOTE : The revert commit did not delete the last commit.Its itself a new commit that undo the changes
+	of given commit.

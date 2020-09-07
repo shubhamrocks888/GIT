@@ -1,0 +1,46 @@
+		"git checkout -- ."
+
+It will undo the changes in tracked files only(not in untracked files)
+
+#Example 1: "for tracked files"
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   first_file.txt
+        modified:   second_file.txt
+        modified:   third_file.txt
+
+$ git checkout -- .
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+#Example 2: "for untracked files"
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        third_file - Copy.txt
+
+
+$ git checkout -- .
+
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        third_file - Copy.txt
+
