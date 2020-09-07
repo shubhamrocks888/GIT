@@ -5,6 +5,7 @@ that inverses the changes specified. Git revert is a safer alternative to git re
 #Bassically it is used when u have committed wrong commit ans someone already pull those changes.
  In that case, we can use git revert by which we can come to last commit.
 
+			"git revert <commit_hash>"
 #Example:
 
 $ git checkout master
